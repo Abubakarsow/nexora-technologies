@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Abubakar Sow | Quantum-Classical Developer &amp; Tech Visionary</title>
+    <meta name="description" content="Innovating through code, building solutions that matter—powered by AI, driven by impact.">
+    <meta name="theme-color" content="#0affff">
+    <link rel="manifest" href="data:application/json;base64,eyJuYW1lIjoiQWJ1YmFrYXIgU293Iiwic2hvcnRfbmFtZSI6IkFzb3ciLCJzdGFydF91cmwiOiIvIiwiYmFja2dyb3VuZF9jb2xvciI6IiMwYTBhMGEiLCJkaXNwbGF5Ijoic3RhbmRhbG9uZSIsInRoZW1lX2NvbG9yIjoiIzBhZmZmZiJ9">
+    <style>
+        /* -------------- DESIGN TOKENS -------------- */
+        :root{
+            --bg:#000000;
+            --bg-glass:#ffffff08;
+            --primary:#0affff;
+            --secondary:#ff00c1;
+            --accent:#faff00;
+            --text:#e6e6e6;
+            --text-dim:#8f8f8f;
+            --radius:14px;
+            --blur:16px;
+            --transition:.4s cubic-bezier(.25,1,.5,1);
+            --font-mono:"SF Mono","Cascadia Code","Roboto Mono",monospace;
+            --font-sans:"Inter","Segoe UI",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif;
+        }
+        /* ======  Polaroid  ====== */
+.about-grid{grid-template-columns:1fr 1fr;align-items:center;gap:4rem}
+.polaroid{
+    position:relative;width:260px;height:320px;margin:0 auto;
+    background:#111;border:1px solid #a1d3e622;border-radius:var(--radius);
+    padding:12px 12px 48px 12px;          /* classic photo strip */
+    box-shadow:0 10px 30px #00000080, 0 0 0 1px #ffffff0d;
+    transition:transform .4s;
+}
+.polaroid img{
+    width:100%;height:100%;object-fit:cover;border-radius:calc(var(--radius) - 6px);
+}
+.glow-ring{
+    position:absolute;inset:-4px;border-radius:var(--radius);
+    background:conic-gradient(var(--primary),var(--secondary),var(--accent),var(--primary));
+    filter:blur(18px);opacity:.7;z-index:-1;animation:spin 6s linear infinite;
+}
+@keyframes spin{to{transform:rotate(360deg)}}
+.polaroid:hover{transform:translateY(-8px) scale(1.03)}
+
+/* ======  Living Orbs  ====== */
+.orb-tray{display:flex;gap:2rem;justify-content:center;align-items:center;flex-wrap:wrap}
+.orb{
+    --size:64px;
+    width:var(--size);height:var(--size);border-radius:50%;
+    display:grid;place-items:center;font-size:1.4rem;
+    background:radial-gradient(circle at 30% 30%,#ffffff1a,transparent 60%),var(--bg-glass);
+    border:1px solid #ffffff22;box-shadow:0 8px 20px #00000060, inset 0 0 12px #ffffff0d;
+    transition:transform .3s,box-shadow .3s;
+    animation:float 4s ease-in-out infinite;
+}
+.orb:nth-child(2){animation-delay:.5s}
+.orb:nth-child(3){animation-delay:1s}
+.orb:nth-child(4){animation-delay:1.5s}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+.orb:hover{
+    transform:scale(1.15) rotate(10deg);
+    box-shadow:0 0 25px var(--orb-glow, var(--primary)), inset 0 0 15px #ffffff40;
+}
+/* individual brand colours */
+.orb.linkedin{--orb-glow:#0077b5}
+.orb.github{--orb-glow:#fff}
+.orb.twitter{--orb-glow:#1da1f2}
+.orb.instagram{--orb-glow:#e4405f}
+
+/* minor responsive tweak */
+@media(max-width:992px){.about-grid{grid-template-columns:1fr}.polaroid{order:-1}}
+        /* -------------- RESET -------------- */
+        *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+        html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+        body{
+            background:var(--bg);
+            color:var(--text);
+            font-family:var(--font-sans);
+            line-height:1.6;
+            -webkit-font-smoothing:antialiased;
+            overflow-x:hidden;
+        }
+        ::selection{background:var(--primary);color:#000}
+        img,svg{max-width:100%;display:block}
+        a{color:inherit;text-decoration:none}
+        button,input,textarea{font:inherit;color:inherit;border:none;background:none}
+        ul{list-style:none}
+        /* -------------- UTILS -------------- */
+        .container{width:90%;max-width:1200px;margin:0 auto}
+        .flex{display:flex;align-items:center;gap:1rem}
+        .grid{display:grid;gap:2rem}
+        .btn{
+            display:inline-flex;align-items:center;justify-content:center;
+            padding:.9rem 2rem;border-radius:var(--radius);font-weight:600;
+            background:linear-gradient(135deg,var(--primary),var(--secondary));
+            color:#000;cursor:pointer;transition:var(--transition);
+            box-shadow:0 0 20px #0affff80;
+        }
+        .btn:hover{transform:translateY(-4px) scale(1.03);box-shadow:0 0 35px #0affff}
+        .btn-outline{
+            background:transparent;border:2px solid var(--primary);
+            color:var(--primary);box-shadow:none;
+        }
+        .btn-outline:hover{background:var(--primary);color:#000}
+        .section-title{
+            font-size:clamp(2rem,5vw,3.5rem);
+            font-weight:800;
+            letter-spacing:-.03em;
+            background:linear-gradient(90deg,var(--primary),var(--secondary));
+            -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+            margin-bottom:3rem;text-align:center;
+        }
+        /* -------------- HEADER -------------- */
+        header{
+            position:fixed;top:0;left:0;right:0;z-index:1000;
+            background:var(--bg-glass);backdrop-filter:blur(var(--blur));
+            border-bottom:1px solid #ffffff14;
+        }
+        nav{
+            display:flex;justify-content:space-between;align-items:center;
+            padding:1.2rem 0;
+        }
+        .logo{
+            font-size:1.5rem;font-weight:800;
+            background:linear-gradient(90deg,var(--primary),var(--accent));
+            -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+        }
+        .nav-links{
+            display:flex;gap:2rem;
+        }
+        .nav-links a{
+            position:relative;font-weight:500;
+            transition:var(--transition);
+        }
+        .nav-links a::after{
+            content:'';position:absolute;bottom:-6px;left:0;
+            width:0;height:2px;background:var(--primary);
+            transition:width var(--transition);
+        }
+        .nav-links a:hover::after{width:100%}
+        .hamburger{display:none;font-size:1.8rem;cursor:pointer}
+        /* -------------- HERO -------------- */
+        .hero{
+            min-height:100vh;display:flex;align-items:center;justify-content:center;
+            text-align:center;padding:8rem 0 4rem;
+            background:radial-gradient(circle at 20% 20%,#0affff26,transparent 40%),
+                      radial-gradient(circle at 80% 70%,#ff00c126,transparent 40%);
+            position:relative;
+        }
+        .hero h1{
+            font-size:clamp(2.8rem,8vw,6rem);
+            font-weight:900;line-height:1.1;
+            letter-spacing:-.04em;
+            background:linear-gradient(135deg,var(--primary),var(--accent));
+            -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+            margin-bottom:1rem;
+        }
+        .hero .tagline{
+            font-size:clamp(1.1rem,2.5vw,1.5rem);
+            color:var(--text-dim);margin-bottom:2rem;
+        }
+        .hero-btns{display:flex;gap:1.5rem;justify-content:center;flex-wrap:wrap}
+        /* -------------- GLASS CARDS -------------- */
+        .glass{
+            background:var(--bg-glass);border:1px solid #ffffff18;
+            border-radius:var(--radius);backdrop-filter:blur(var(--blur));
+            padding:2.5rem;transition:var(--transition);
+        }
+        .glass:hover{transform:translateY(-6px);border-color:var(--primary);}
+        /* -------------- SECTIONS -------------- */
+        section{padding:5rem 0}
+        .about .grid{grid-template-columns:1fr 1fr;align-items:center;gap:4rem}
+        .about-img{
+            height:320px;background:radial-gradient(circle,var(--primary),var(--secondary));
+            border-radius:var(--radius);position:relative;overflow:hidden;
+        }
+        .about-img::after{
+            content:'';position:absolute;inset:0;
+            background:url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><text x="10" y="50" font-size="60" fill="%23000" opacity=".08">0101</text></svg>');
+            background-size:cover;
+        }
+        .experience-grid{grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
+        .skills-grid{grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
+        .value-grid{grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
+        .contact-grid{grid-template-columns:1fr 1fr;gap:4rem}
+        /* -------------- FORM -------------- */
+        .form-group{margin-bottom:1.5rem}
+        .form-control{
+            width:100%;padding:1rem;border:1px solid #ffffff22;
+            border-radius:var(--radius);background:#ffffff0d;
+            transition:var(--transition);
+        }
+        .form-control:focus{outline:none;border-color:var(--primary);box-shadow:0 0 0 3px #0affff40}
+        /* -------------- FOOTER -------------- */
+        footer{
+            text-align:center;padding:3rem 0 2rem;
+            border-top:1px solid #ffffff14;
+        }
+        .social{
+            display:flex;gap:1.2rem;justify-content:center;margin-bottom:2rem}
+        .social a{
+            width:44px;height:44px;border:1px solid #ffffff22;
+            border-radius:50%;display:grid;place-items:center;
+            transition:var(--transition);
+        }
+        .social a:hover{background:var(--primary);color:#000;border-color:var(--primary);}
+        /* -------------- ANIMATIONS -------------- */
+        [data-animate]{opacity:0;transform:translateY(30px);transition:opacity .8s ease,transform .8s ease}
+        [data-animate="visible"]{opacity:1;transform:none}
+        /* -------------- RESPONSIVE -------------- */
+        @media(max-width:992px){
+            .about .grid,.contact-grid{grid-template-columns:1fr}
+            .about-img{order:-1;height:250px}
+        }
+        @media(max-width:768px){
+            .nav-links{
+                position:fixed;top:0;right:-100%;width:70%;max-width:280px;
+                height:100vh;background:#000000ee;flex-direction:column;
+                padding:6rem 2rem 2rem;transition:right var(--transition);
+                border-left:1px solid #ffffff22;
+            }
+            .nav-links.active{right:0}
+            .hamburger{display:block}
+        }
+        @media(max-width:480px){
+            .hero-btns{flex-direction:column;width:100%}
+            .btn{width:100%}
+        }
+    </style>
+</head>
+<body>
+<!-- ---------- HEADER ---------- -->
+<header>
+    <div class="container">
+        <nav>
+            <a href="#" class="logo">Abubakar Sow</a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#values">Values</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="hamburger" id="hamburger"><i class="fas fa-bars"></i></div>
+        </nav>
+    </div>
+</header>
+
+<!-- ---------- HERO ---------- -->
+<section class="hero" id="home">
+    <div class="container">
+        <h1 data-animate>Quantum-Classical Developer</h1>
+        <p class="tagline" data-animate>Innovating through Code, Building Solutions that Matter.</p>
+        <p data-animate>Final-year B.Sc. Computer Science | Njala University | CTO | President Ode-to-Code | Tech Visionary</p>
+        <div class="hero-btns" data-animate>
+            <a href="#experience" class="btn">Explore Timeline</a>
+            <a href="#contact" class="btn btn-outline">Connect</a>
+        </div>
+    </div>
+</section>
+
+<!-- ---------- ABOUT (w/ futuristic polaroid) ---------- -->
+<section class="about" id="about">
+    <div class="container">
+        <h2 class="section-title" data-animate>About Me</h2>
+        <div class="grid about-grid">
+            <div data-animate>
+                <p>I'm <strong>Abubakar Sow</strong>, a final-year Computer-Science student at <strong>Njala University</strong> blending creativity with code to build intelligent, human-centred systems.</p>
+                <p>As Deputy Director of Innovation (SUG) & CTO-2 at NUMSA, I architect campus-wide smart solutions—from AI-powered hubs to digital-inclusion pipelines—impacting thousands.</p>
+                <p>President of <strong>Ode-to-Code</strong>, I mentor future builders, turning curiosity into shipped products.</p>
+            </div>
+            <div class="polaroid" data-animate>
+                <!-- 1️⃣  drop your pic here -->
+                <img src="images/abubakar.jpg" alt="Abubakar Sow">
+                <span class="glow-ring"></span>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- ---------- VISION ---------- -->
+<section style="background:transparent">
+    <div class="container">
+        <blockquote class="glass" data-animate>
+            “To innovate and build technologies that transform lives, democratise tech skills, and solve real-world problems through creativity & collaboration.”
+            <footer style="margin-top:1rem;font-style:normal;color:var(--primary)">— Abubakar Sow</footer>
+        </blockquote>
+    </div>
+</section>
+
+<!-- ---------- EXPERIENCE ---------- -->
+<section class="experience" id="experience">
+    <div class="container">
+        <h2 class="section-title" data-animate>Leadership Timeline</h2>
+        <div class="grid experience-grid">
+            <article class="glass" data-animate>
+                <h3 style="color:var(--primary)">Deputy Director of Innovation</h3>
+                <p style="color:var(--accent);font-weight:600">Student Union Government</p>
+                <p>Spear-heading Innovation-Hub creation, smart-campus IoT, digital-inclusion programs.</p>
+            </article>
+            <article class="glass" data-animate>
+                <h3 style="color:var(--primary)">Chief Technology Officer</h3>
+                <p style="color:var(--accent);font-weight:600">NUMSA</p>
+                <p>Architecting digital infrastructure & community platforms for 5 000+ students.</p>
+            </article>
+            <article class="glass" data-animate>
+                <h3 style="color:var(--primary)">President</h3>
+                <p style="color:var(--accent);font-weight:600">Ode-to-Code Union</p>
+                <p>Leading 200+ developers—hackathons, workshops, open-source drives.</p>
+            </article>
+            <article class="glass" data-animate>
+                <h3 style="color:var(--primary)">Tech Volunteer</h3>
+                <p style="color:var(--accent);font-weight:600">WEILDIGHAL & YAD NGO</p>
+                <p>Community-based EdTech & digital-literacy initiatives nation-wide.</p>
+            </article>
+        </div>
+    </div>
+</section>
+
+<!-- ---------- SKILLS ---------- -->
+<section class="skills" id="skills">
+    <div class="container">
+        <h2 class="section-title" data-animate>Skill Matrix</h2>
+        <div class="grid skills-grid">
+            <div class="glass" data-animate>
+                <h4 style="margin-bottom:1rem;color:var(--accent)">Languages</h4>
+                <p>C++ • C# • Python • JavaScript • VB.NET • SQL</p>
+            </div>
+            <div class="glass" data-animate>
+                <h4 style="margin-bottom:1rem;color:var(--accent)">Frameworks</h4>
+                <p>React-Native • Node.js • Firebase • Next.js</p>
+            </div>
+            <div class="glass" data-animate>
+                <h4 style="margin-bottom:1rem;color:var(--accent)">Domains</h4>
+                <p>AI/ML • Cybersecurity • Smart-Systems • Cloud • IoT</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ---------- VALUES ---------- -->
+<section class="values" id="values">
+    <div class="container">
+        <h2 class="section-title" data-animate>Core Values</h2>
+        <div class="grid value-grid">
+            <div class="glass text-center" data-animate>
+                <i class="fas fa-lightbulb fa-2x" style="color:var(--primary)"></i>
+                <h3>Innovation</h3>
+                <p>Turning bold ideas into impactful digital realities.</p>
+            </div>
+            <div class="glass text-center" data-animate>
+                <i class="fas fa-users fa-2x" style="color:var(--primary)"></i>
+                <h3>Leadership</h3>
+                <p>Inspiring excellence through shared vision.</p>
+            </div>
+            <div class="glass text-center" data-animate>
+                <i class="fas fa-handshake fa-2x" style="color:var(--primary)"></i>
+                <h3>Integrity</h3>
+                <p>Transparent, ethical, accountable—always.</p>
+            </div>
+            <div class="glass text-center" data-animate>
+                <i class="fas fa-seedling fa-2x" style="color:var(--primary)"></i>
+                <h3>Growth</h3>
+                <p>Perpetual beta—learn, iterate, evolve.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ---------- CONTACT ---------- -->
+<section class="contact" id="contact">
+    <div class="container">
+        <h2 class="section-title" data-animate>Connect</h2>
+        <div class="grid contact-grid">
+            <div data-animate>
+                <h3 style="margin-bottom:1.5rem">Contact Info</h3>
+                <div class="flex" style="margin-bottom:1rem"><i class="fas fa-envelope fa-fw" style="color:var(--primary)"></i><span>abubakarsow111@gmail.com</span></div>
+                <div class="flex" style="margin-bottom:1rem"><i class="fas fa-map-marker-alt fa-fw" style="color:var(--primary)"></i><span>Sierra Leone</span></div>
+                <div class="flex" style="margin-bottom:1rem"><i class="fas fa-university fa-fw" style="color:var(--primary)"></i><span>B.Sc. (Hons) Computer Science — Njala University</span></div>
+            </div>
+            <form id="contactForm" data-animate>
+                <h3 style="margin-bottom:1.5rem">Send a Signal</h3>
+                <div class="form-group"><input class="form-control" type="text" name="name" placeholder="Your Name" required></div>
+                <div class="form-group"><input class="form-control" type="email" name="email" placeholder="Your Email" required></div>
+                <div class="form-group"><input class="form-control" type="text" name="subject" placeholder="Subject" required></div>
+                <div class="form-group"><textarea class="form-control" name="message" rows="4" placeholder="Message" required></textarea></div>
+                <button type="submit" class="btn">Transmit</button>
+            </form>
+        </div>
+    </div>
+</section>
+
+<!-- ---------- FOOTER (living orbs) ---------- -->
+<footer>
+    <div class="container">
+        <h3 style="margin-bottom:2rem;font-weight:600">Find Me in the Metaverse</h3>
+
+        <div class="orb-tray">
+            <a href="https://linkedin.com/in/abubakarsow" class="orb linkedin" aria-label="LinkedIn">
+                <i class="fab fa-linkedin-in"></i>
+            </a>
+            <a href="https://github.com/abubakarsow" class="orb github" aria-label="GitHub">
+                <i class="fab fa-github"></i>
+            </a>
+            <a href="https://twitter.com/abubakarsow" class="orb twitter" aria-label="Twitter">
+                <i class="fab fa-twitter"></i>
+            </a>
+            <a href="https://instagram.com/abubakarsow" class="orb instagram" aria-label="Instagram">
+                <i class="fab fa-instagram"></i>
+            </a>
+        </div>
+
+        <p style="margin-top:3rem;color:var(--text-dim);font-size:.8rem">
+            &copy; <span id="year"></span> Abubakar Sow. Built for the next decade.
+        </p>
+    </div>
+</footer>
+
+<script>
+/* ---------- MOBILE MENU ---------- */
+const hamburger = document.getElementById('hamburger');
+const navLinks  = document.getElementById('navLinks');
+hamburger.addEventListener('click', () => navLinks.classList.toggle('active'));
+document.querySelectorAll('#navLinks a').forEach(link => link.addEventListener('click', () => navLinks.classList.remove('active')));
+
+/* ---------- SCROLL REVEAL ---------- */
+const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+        if(entry.isIntersecting) entry.target.setAttribute('data-animate','visible');
+    });
+}, {threshold:.2});
+document.querySelectorAll('[data-animate]').forEach(el => observer.observe(el));
+
+/* ---------- DYNAMIC YEAR ---------- */
+document.getElementById('year').textContent = new Date().getFullYear();
+
+/* ---------- FORM HANDLER (Netlify / EmailJS ready) ---------- */
+document.getElementById('contactForm').addEventListener('submit', e => {
+    e.preventDefault();
+    const btn = e.target.querySelector('button');
+    btn.textContent = 'Sent ✔'; btn.disabled = true;
+    setTimeout(() => { btn.textContent = 'Transmit'; btn.disabled = false; }, 3000);
+    e.target.reset();
+});
+</script>
+</body>
+</html>

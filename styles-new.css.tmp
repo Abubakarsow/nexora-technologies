@@ -1,0 +1,133 @@
+/* ---------- Professional Floating Bubbles ---------- */
+.floating-bubbles {
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.bubble-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transform: translateZ(0);
+    will-change: transform;
+}
+
+.bubble {
+    position: absolute;
+    width: var(--size);
+    height: var(--size);
+    border-radius: 50%;
+    animation: floatUp var(--float-time, 36s) ease-in-out infinite;
+    animation-delay: var(--delay);
+    opacity: 0;
+    background: linear-gradient(
+        135deg,
+        rgba(var(--bubble-color-1, 37,99,235), 0.08),
+        rgba(var(--bubble-color-2, 124,58,237), 0.04)
+    );
+    backdrop-filter: blur(4px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 
+        0 8px 16px rgba(0,0,0,0.05),
+        inset 0 0 0 1px rgba(255,255,255,0.08);
+    transform-origin: center center;
+    will-change: transform, opacity;
+}
+
+.bubble::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: radial-gradient(
+        circle at 30% 30%,
+        rgba(255,255,255,0.1),
+        transparent 60%
+    );
+    opacity: 0.8;
+}
+
+/* Bubble sizes and positions */
+.bubble-lg {
+    --float-time: 38s;
+    left: 10%;
+}
+
+.bubble-lg:nth-of-type(2) { left: 70%; }
+.bubble-lg:nth-of-type(3) { left: 40%; }
+
+.bubble-md {
+    --float-time: 32s;
+    left: 20%;
+}
+
+.bubble-md:nth-of-type(2) { left: 65%; }
+.bubble-md:nth-of-type(3) { left: 35%; }
+
+.bubble-sm {
+    --float-time: 28s;
+    left: 15%;
+}
+
+.bubble-sm:nth-of-type(2) { left: 55%; }
+.bubble-sm:nth-of-type(3) { left: 80%; }
+
+@keyframes floatUp {
+    0% {
+        transform: translateY(120vh) rotate(0deg) scale(1);
+        opacity: 0;
+    }
+    10% {
+        opacity: var(--bubble-opacity, 0.3);
+        transform: translateY(90vh) rotate(45deg) scale(1);
+    }
+    90% {
+        opacity: var(--bubble-opacity, 0.3);
+        transform: translateY(10vh) rotate(315deg) scale(0.9);
+    }
+    100% {
+        transform: translateY(-20vh) rotate(360deg) scale(0.8);
+        opacity: 0;
+    }
+}
+
+/* Performance optimizations and responsive design */
+@media (prefers-reduced-motion: reduce) {
+    .bubble {
+        animation: none;
+        display: none;
+    }
+}
+
+@media (max-width: 768px) {
+    .bubble {
+        --bubble-opacity: 0.2;
+    }
+    .bubble-lg { 
+        transform: scale(0.8);
+        --float-time: 45s;
+    }
+    .bubble-md { 
+        transform: scale(0.8);
+        --float-time: 40s;
+    }
+    .bubble-sm { 
+        transform: scale(0.7);
+        --float-time: 35s;
+    }
+}
+
+/* High contrast mode and dark theme adjustments */
+@media (prefers-contrast: high) {
+    .bubble {
+        display: none;
+    }
+}
+
+/* Existing styles below */
